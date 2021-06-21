@@ -1,0 +1,543 @@
+// 初始化
+* {
+    margin: 0;
+    padding: 0;
+    // CSS3 盒子模型
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+body {
+    // 正常 body 字体大小
+    font-size: 0.583333rem;
+    line-height: 1.15;
+    color: #4c9bfd;
+}
+
+// layout 样式
+.layout {
+    // flex 布局
+    display: flex;
+
+    // 宽高限制：控制宽高变化
+    max-width: 1920px;
+    min-width: 1024px;
+
+    // 背景图
+    background: no-repeat center top / contain url(../images/logo.png), url(../images/bg.jpg);
+
+    // 内边距
+    padding: 3.66665067rem 0.833333rem 0.833333rem;
+    margin: 0 auto;
+
+    // column 子元素布局
+    .column {
+        flex: 3;
+        // background-color: pink;
+    }
+
+    .column:nth-child(2) {
+        flex: 4;
+        margin: 1.333333rem 0.833333rem 0;
+    }
+}
+
+// 图片边框
+.border-image {
+    border: 1px solid;
+
+    // 获取到背景图
+    border-image-source: url(../images//border.png);
+    // 切割 （不能添加单位，裁剪顺序为上右下左）
+    border-image-slice: 55 42 26 138;
+    // 图片边框的宽度（需要加单位）
+    border-image-width: 2.291667rem 1.75rem 1.083333rem 5.75rem;
+    border-image-repeat: round;
+
+    padding: 0.833333rem;
+}
+
+// 1. 第一列数据(左侧列)
+
+// 1.1 概览模块
+.baseinfo {
+    display: flex;
+    justify-content: space-around;
+    height: 4.583333rem;
+    // background-color: gold;
+
+    h2 {
+        font-weight: normal;
+        color: #fff;
+        margin-left: 0.416667rem;
+        margin-bottom: 0.416667rem;
+    }
+
+    // 字体颜色
+    .item:nth-child(2) .icon-dot,
+    .item:nth-child(3) .icon-dot {
+        color: greenyellow;
+    }
+
+    .item:nth-child(4) .icon-dot {
+        color: red;
+    }
+}
+
+// 1.2 监控模块
+.monitor {
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    margin: 0.833333rem 0;
+
+    // 1.2.1 tab栏样式
+    .tabs {
+        margin-bottom: 0.625rem;
+        a {
+            padding: 0 0.833333rem;
+            font-size: 0.833333rem;
+        }
+
+        a.active {
+            color: #fff;
+        }
+
+        a:first-child {
+            border-right: 0.083333rem solid greenyellow;
+        }
+    }
+
+    // 1.2.2 内容栏
+    .content {
+        .title {
+            display: flex;
+            // 均匀排列每个元素,每个元素周围分配相同的空间
+            justify-content: space-around;
+            background-color: #1b1d27;
+            padding: 0.833333rem;
+        }
+
+        .list {
+            display: none;
+            height: 13rem;
+            overflow: hidden;
+            ul {
+                // animation: 名称 持续时间 运动曲线 重复次数
+                animation: move 10s linear infinite;
+
+                li {
+                    display: flex;
+                    padding: 0.416667rem;
+
+                    span {
+                        position: relative;
+                        flex: 1;
+                        text-align: center;
+                        font-size: 0.5rem;
+
+                        // 不换行
+                        white-space: nowrap;
+                        // 溢出隐藏
+                        overflow: hidden;
+                        // 溢出部分省略号显示
+                        text-overflow: ellipsis;
+
+                        i {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            display: none;
+                        }
+                    }
+                }
+
+                li:hover span i {
+                    display: block;
+                }
+            }
+
+            // 鼠标悬停时暂停动画
+            ul:hover {
+                animation-play-state: paused;
+            }
+        }
+
+        // list 激活状态显示
+        .list.active {
+            display: block;
+        }
+    }
+
+    // 定义 移动 动画
+    @keyframes move {
+        from {
+        }
+        to {
+            transform: translateY(-50%);
+        }
+    }
+}
+
+// 1.3 点位模块
+.site {
+    height: 13.75rem;
+
+    h3 {
+        padding: 0.416667rem 0;
+        font-size: 0.75rem;
+        color: #fff;
+    }
+
+    .chart {
+        display: flex;
+        height: 10rem;
+        // background-color: skyblue;
+
+        .pie {
+            flex: 3;
+            // background-color: slateblue;
+        }
+
+        .data {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-image: url(../images/rect.png);
+            text-align: center;
+
+            .item h4 {
+                margin-left: 0.416667rem;
+                margin-bottom: 0.416667rem;
+                font-size: 1.166667rem;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// 2. 第二列数据(中间列)
+
+// 2.1 地图模块
+.map {
+    display: flex;
+    flex-direction: column;
+    height: 24.166667rem;
+    margin-bottom: 0.833333rem;
+
+    h3 {
+        margin: 0.833333rem 0 0.416667rem;
+        color: #fff;
+        font-size: 0.833333rem;
+
+        .icon-cube {
+            color: #68d8fe;
+        }
+    }
+
+    .chart {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.05);
+
+        .maparea {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+// 2.2 用户模块
+.user {
+    height: 13.75rem;
+
+    h3 {
+        font-size: 0.75rem;
+        color: #fff;
+        padding: 0.416667rem 0;
+    }
+
+    .chart {
+        display: flex;
+        height: 10rem;
+
+        .bar {
+            flex: 4;
+            // background-color: salmon;
+        }
+
+        .data {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 0 1.25rem;
+
+            flex: 1;
+            background: url(../images/rect.png);
+            text-align: center;
+
+            .item h4 {
+                margin-left: 0.416667rem;
+                margin-bottom: 0.416667rem;
+                font-size: 1.166667rem;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// 3. 第三列数据（右侧列）
+
+// 3.1 订单模块
+.order {
+    height: 6.333333rem;
+
+    .tabs {
+        display: flex;
+        a {
+            padding: 0 0.833333rem;
+            border-right: 0.083333rem solid yellowgreen;
+
+            // &.active === a.active  表示既是 a 标签又含有 active 类
+            &.active {
+                color: #fff;
+            }
+
+            // 最后一个 a 标签去除右边框
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    .data {
+        display: flex;
+        justify-content: space-around;
+
+        h4 {
+            margin: 0.833333rem 0.416667rem 0.625rem;
+            font-size: 1.041667rem;
+            color: #fff;
+        }
+    }
+}
+
+// 3.2 销售模块
+.sales {
+    display: flex;
+    flex-direction: column;
+    height: 10.416667rem;
+    margin: 0.833333rem 0;
+
+    .caption {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.833333rem;
+
+        h3 {
+            font-size: 1rem;
+            color: #fff;
+            padding: 0 0.833333rem;
+            border-right: 0.083333rem solid yellowgreen;
+        }
+
+        a {
+            flex: 1;
+            margin: 0 1rem;
+            padding: 0.208333rem;
+            border-radius: 0.208333rem;
+            font-size: 0.833333rem;
+            text-align: center;
+
+            &.active {
+                background-color: #4c9bfd;
+                color: #fff;
+            }
+        }
+    }
+
+    .line {
+        flex: 1;
+        // background-color: aqua;
+    }
+}
+
+// 3.3 渠道模块
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 10rem;
+    // background-color: salmon;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .channel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-right: 0.833333rem;
+
+        h3 {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .data {
+            flex: 1;
+            display: flex;
+            // 允许换行显示
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            // background-color: yellowgreen;
+
+            .item {
+                width: 35%;
+
+                h4 {
+                    font-size: 1.5rem;
+                    color: #fff;
+
+                    small {
+                        font-size: 0.416667rem;
+                    }
+                }
+
+                span {
+                    font-size: 0.5rem;
+                }
+            }
+        }
+    }
+    .quarter {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.291667rem;
+            font-weight: bold;
+            // background-color: yellowgreen;
+            color: #fff;
+
+            small {
+                font-size: 0.416667rem;
+                margin-left: 0.208333rem;
+            }
+        }
+
+        .data {
+            display: flex;
+            justify-content: space-around;
+            margin: 0.208333rem 0;
+            .item {
+                h4 {
+                    margin-left: 0.416667rem;
+                    margin-bottom: 0.416667rem;
+                    font-size: 0.833333rem;
+                    color: #fff;
+                }
+
+                span {
+                    font-size: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+// 3.4 排行模块
+.rank {
+    display: flex;
+    flex-direction: column;
+    height: 10.833333rem;
+    margin-top: 0.833333rem;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.666667rem;
+    }
+
+    .data {
+        display: flex;
+        justify-content: space-between;
+        flex: 1;
+        // background-color: skyblue;
+
+        .all,
+        .province,
+        .date {
+            flex: 1;
+        }
+
+        .all {
+            ul {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                li {
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        font-size: 1.458333rem;
+                        margin-right: 0.833333rem;
+                    }
+                }
+            }
+        }
+
+        .province {
+            ul {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                text-align: center;
+
+                li {
+                    padding: 0.333333rem 0;
+                }
+            }
+        }
+
+        .date {
+            background-color: rgba(10, 67, 188, 0.4);
+            color: #52ffff;
+
+            ul {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                li {
+                    flex: 1;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
